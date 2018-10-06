@@ -24,7 +24,8 @@ class ApiTask(Resource):
 
     @classmethod
     def put(self, id):
-        task = Task.find_by_id(id)
+        data = ApiTask.parser.parse_args()
+        task = Task.find_by_id(Task, id)
         if task is None:
             task = Task(data['name'], data['weekday'], data['hour'], data['grabber_id'])
         else:
