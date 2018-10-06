@@ -15,18 +15,6 @@ class ApiUrl(Resource):
         return {'message' : 'Logindata not found'}, 404
 
     @classmethod
-    def post(self):
-        data = ApiUrl.parser.parse_args()
-        print('you are here')
-        url = Url(data['login_url'], data['visit_url'])
-        try:
-            url.save_to_db()
-        except:
-            return {'message' : 'Failed to save'}, 500
-
-        return url.json(), 201
-
-    @classmethod
     def put(self):
         data = ApiUrl.parser.parse_args()
         url = url.find_by_id(data['id'])
@@ -48,3 +36,14 @@ class ApiUrlList(Resource):
     def get(self):
         urls = Url.find_all(Url)
         return {'urls' : [Url.json(myInput) for myInput in urls]}
+
+    def post(self):
+        data = ApiUrl.parser.parse_args()
+        print('you are here')
+        url = Url(data['login_url'], data['visit_url'])
+        try:
+            url.save_to_db()
+        except:
+            return {'message' : 'Failed to save'}, 500
+
+        return url.json(), 201
