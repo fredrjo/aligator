@@ -37,7 +37,7 @@ class Task(db.Model):
         return 'Task: ' + self.name
 
     def getGrabber(self):
-        grabber = Grabber.find_by_id(Grabber.name, self.grabber_id)
+        grabber = Grabber.find_by_id(Grabber, self.grabber_id)
         if grabber:
             return grabber
         else:
