@@ -33,7 +33,7 @@ class ApiTask(Resource):
             task.weekday = data['weekday']
             task.hour = data['hour']
             task.grabber_id = data['grabber_id']
-        #    task.status_id = data['status_id']
+        #    task.statuscode_id = data['statuscode_id']
             task.url_id = data['url_id']
         task.save_to_db()
         return task.json(), 201

@@ -15,14 +15,14 @@ class ApiUrl(Resource):
         return {'message' : 'Logindata not found'}, 404
 
     @classmethod
-    def put(self):
+    def put(self, id):
         data = ApiUrl.parser.parse_args()
-        url = url.find_by_id(data['id'])
+        url = Url.find_by_id(id)
         if url is None:
             url = Url(data['login_url'], data['visit_url'])
         else:
-            url.username = username
-            url.password = password
+            url.login_url = data['login_url']
+            url.visit_url = data['visit_url']
         url.save_to_db()
         return url.json()
 
