@@ -52,7 +52,7 @@ class Task(db.Model):
         self.url_id = url_id
 
     def getUrl(self):
-        return Url.find_by_id(Url, 1)
+        return Url.find_by_id(Url, self.url_id)
 
     def getImportmail(self):
         importmail = Importmail.find_by_id(Importmail, 1)
@@ -63,6 +63,9 @@ class Task(db.Model):
 
     def find_by_id(cls, id):
         return Task.query.filter_by(id=id).first()
+
+    def getTaskName(self):
+        return self.name
 
     def save_to_db(self):
         db.session.add(self)

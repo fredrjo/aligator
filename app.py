@@ -23,7 +23,7 @@ from resources.api_task import ApiTask, ApiTaskList
 from resources.api_contact import ApiContact, ApiContactList
 from resources.api_importmail import ApiImportmail, ApiImportmailList
 from resources.api_alarm import ApiAlarm, ApiAlarmList
-from resources.api_taskrun import ApiTaskrun
+from resources.api_taskrun import ApiTaskrun, ApiTaskrunList
 
 app = Flask(__name__)
 CORS(app)
@@ -49,6 +49,7 @@ api.add_resource(ApiUrlList, '/urls')
 api.add_resource(ApiMeterList, '/meters')
 api.add_resource(ApiGrabberList, '/grabbers')
 api.add_resource(ApiTaskList, '/tasks')
+api.add_resource(ApiTaskrunList, '/taskruns')
 api.add_resource(ApiImportmailList, '/importmails')
 api.add_resource(ApiLogindataList, '/logindatas')
 api.add_resource(ApiAlarmList, '/alarms')

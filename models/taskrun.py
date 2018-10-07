@@ -12,5 +12,27 @@ class Taskrun(db.Model):
     task_id = db.Column(db.Integer, db.ForeignKey('tasks.id'))
     task = db.relationship('Task')
 
-    def __init__():
-        pass
+    def __init__(self, task_id, runtime, statuscode):
+        self.date_time = runtime
+        self.task_id = task_id
+        self.statuscode_id = statuscode
+
+    def save_to_db(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def getTask(self):
+        return Task.find_by_id(Task, self.task_id)
+
+    def getStatusName():
+        return Statuscode.find_by_id(Statuscode, self.statuscode_id).name
+
+    def delete_from_db(self):
+        db.session.delete(self)
+        db.session.commit()
+    
+    def json(self):
+        return {'runtime' : self.date_time, 'task' : getTask(), 'statuscode' : self.getStatusName()}
+
+    def find_all(cls):
+        return Taskrun.query.all()

@@ -19,6 +19,7 @@ class ApiMeter(Resource):
 
     @classmethod
     def put(self, id):
+        data = ApiMeter.parser.parse_args()
         meter = Meter.find_by_id(id)
         if meter is None:
             meter = Meter(data['import_id'], data['meter_id'], data['extras'])
