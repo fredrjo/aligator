@@ -28,7 +28,7 @@ from resources.api_taskrun import ApiTaskrun, ApiTaskrunList
 app = Flask(__name__)
 CORS(app)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:password@localhost/crawler'
 app.secret_key = 'rabarbra'
 api = Api(app)
 

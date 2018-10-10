@@ -33,7 +33,7 @@ class Meter(db.Model):
         return self.grabber
 
     def json(self):
-        return {'id' : self.id, 'meter_id' : self.meter_id, 'import_id' : self.import_id, 'extras' : self.extras, 'disabled' : self.disabled}
+        return {'id' : self.id, 'meter_id' : self.meter_id, 'import_id' : self.import_id, 'extras' : self.extras, 'disabled' : self.disabled, 'task_id' : self.task_id}
 
     def find_by_id(cls, id):
         return Meter.query.filter_by(id=id).first()
