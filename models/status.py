@@ -16,5 +16,8 @@ class Statuscode(db.Model):
         self.message = message
 
     def __str__(self):
-        return '' + self.status_code + ' : ' + self.message 
+        return '' + self.status_code + ' : ' + self.message
+
+    def find_by_id(cls, id):
+        return Statuscode.query.filter_by(id=id).first()
     

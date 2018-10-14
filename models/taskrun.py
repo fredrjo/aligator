@@ -1,4 +1,7 @@
 from db import db
+from models.task import Task
+from models.status import Statuscode
+import datetime
 
 class Taskrun(db.Model):
     __tablename__ = 'taskruns'
@@ -24,15 +27,18 @@ class Taskrun(db.Model):
     def getTask(self):
         return Task.find_by_id(Task, self.task_id)
 
-    def getStatusName():
-        return Statuscode.find_by_id(Statuscode, self.statuscode_id).name
+    def getTimeAsString(self):
+        return datetime.datetime.strftime(self.date_time, 'HH:mm')
+
+    def getStatusName(self):
+        return Statuscode.find_by_id(Statuscode, self.statuscode_id).message
 
     def delete_from_db(self):
         db.session.delete(self)
         db.session.commit()
     
     def json(self):
-        return {'runtime' : self.date_time, 'task' : getTask(), 'statuscode' : self.getStatusName()}
+        return {'runtime' : self.getTimeAsString(), 'task' : self.getTask().name, 'statuscode' : self.getStatusName()}
 
     def find_all(cls):
         return Taskrun.query.all()
